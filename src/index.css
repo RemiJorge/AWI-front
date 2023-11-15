@@ -25,7 +25,6 @@ body {
   min-height: 100vh; 
   padding: 1rem 0.5rem;
 }
-
 section {
     width: 100%;
     max-width: 420px;
@@ -34,7 +33,9 @@ section {
     flex-direction: column;
     justify-content: flex-start;
     padding: 1rem;
-    background-color: rgba(0,0,0,0.4);
+    border-radius: 0.5rem;
+    color: #000;
+    background-color: #fff;
 }
 
 form {
@@ -45,6 +46,7 @@ form {
     padding-bottom: 1rem;
 }
 
+/*
 a, a:visited {
     color: #fff;
 }
@@ -142,3 +144,4 @@ li {
     width: 20px;
     margin: 0 5px 2px 2px;
 }
+*/
