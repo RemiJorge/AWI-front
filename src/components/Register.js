@@ -5,8 +5,8 @@ import axios from '../api/axios';
 import { Link } from "react-router-dom";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
-const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/auth/register';
+const PWD_REGEX = /^(.*){8,24}$/;
+const REGISTER_URL = '/auth/signup';
 
 const Register = () => {
     const userRef = useRef();
@@ -55,7 +55,7 @@ const Register = () => {
         }
         try {
             const response = await axios.post(REGISTER_URL,
-                JSON.stringify({ user, pwd }),
+                JSON.stringify({ "username": user, "password": pwd, "email": "fake@mail.com"}),
                 {
                     headers: { 'Content-Type': 'application/json' },
                     withCredentials: true
@@ -87,7 +87,7 @@ const Register = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a href="#">Sign In</a>
+                        <a href="#signin">Sign In</a>
                     </p>
                 </section>
             ) : (
@@ -171,7 +171,7 @@ const Register = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            <Link to="/">Sign In</Link>
+                            <Link to="/login">Sign In</Link>
                         </span>
                     </p>
                 </section>

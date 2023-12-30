@@ -3,24 +3,25 @@ import useAuth from '../hooks/useAuth';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import axios from '../api/axios';
-const LOGIN_URL = '/auth/token';
+const REGISTER_URL = '/auth/signup';
 
-const Login = () => {
+const Register = () => {
     const { setAuth, persist, setPersist } = useAuth();
 
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/";
 
-    const userRef = useRef();
+    const mailRef = useRef();
     const errRef = useRef();
 
+    const [mail, setMail] = useState('');
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
     useEffect(() => {
-        userRef.current.focus();
+        mailRef.current.focus();
     }, [])
 
     useEffect(() => {
@@ -29,37 +30,26 @@ const Login = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append('username', user);
-        formData.append('password', pwd);
 
         const config = {
-            headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-            },
+            headers: { 'Content-Type': 'application/json' },
             withCredentials: true
         };
 
         try {
-            const response = await axios.post(LOGIN_URL,
-                formData,
+            const response = await axios.post(REGISTER_URL,
+                {"username": user, "password": pwd, "email": mail},
                 config
             );
-            console.log(JSON.stringify(response?.data));
-            //console.log(JSON.stringify(response));
-            const accessToken = response?.data?.access_token;
-            const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
-            navigate(from, { replace: true });
+            setMail('');
+            navigate("/login");
         } catch (err) {
             if (!err?.response) {
                 setErrMsg('Pas de réponse du serveur');
-            } else if (err.response?.status === 400) {
-                setErrMsg("Nom d'utilisateur ou mot de passe incorrect");
-            } else if (err.response?.status === 401) {
-                setErrMsg("Non autorisé");
+            } else if (err.response?.status === 409) {
+                setErrMsg("Nom d'utilisateur déjà utilisé");
             } else {
                 setErrMsg('Connexion échouée');
             }
@@ -78,14 +68,28 @@ const Login = () => {
     return (
 
         <div className="content login-form">
-            <h1>Connectez-vous</h1>
+            <h1>Inscrivez-vous</h1>
             <form onSubmit={handleSubmit}>
+
+                <div className='form-group'>
+                    <label htmlFor="username">Email</label>
+                    <input
+                        type="text"
+                        id="email"
+                        ref={mailRef}
+                        autoComplete="off"
+                        onChange={(e) => setMail(e.target.value)}
+                        value={mail}
+                        required
+                        />
+                </div>
+
+
                 <div className='form-group'>
                     <label htmlFor="username">Surnom</label>
                     <input
                         type="text"
                         id="username2"
-                        ref={userRef}
                         autoComplete="off"
                         onChange={(e) => setUser(e.target.value)}
                         value={user}
@@ -116,10 +120,10 @@ const Login = () => {
                 </div>
             </form>
             <p>
-                Besoin d'un compte ?
+                Déjà un compte ?
                 <br />
                 <span className="line">
-                    <Link to="/register">Inscrivez-vous</Link>
+                    <Link to="/login">Connectez-vous</Link>
                 </span>
             </p>
         </div>
@@ -127,4 +131,4 @@ const Login = () => {
     )
 }
 
-export default Login
+export default Register
