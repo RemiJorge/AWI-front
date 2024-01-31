@@ -14,6 +14,7 @@ const JobPlanning = () => {
     const [inscriptions, setInscriptions] = useState([]);
     const [multipleInscriptions, setMultipleInscriptions] = useState(false);
     const [desinscriptions, setDesinscriptions] = useState([]);
+    const [festivalID, setFestivalID] = useState(1);
     const axiosPrivate = useAxiosPrivate();
 
 
@@ -46,6 +47,8 @@ const JobPlanning = () => {
 
     useEffect(() => {
         if (!jobs || Object.keys(jobs).length <= 0) return;
+
+        setFestivalID(jobs[0].festival_id);
 
         const data = jobs.reduce((acc, job) => {
             const { jour, poste, creneau, nb_inscriptions } = job;
@@ -120,7 +123,7 @@ const JobPlanning = () => {
             setInscriptions(inscriptions.filter(item => item.poste !== poste || item.jour !== day || item.creneau !== creneau))
          } else {
             inscriptions.find(item => item.creneau === creneau && item.jour === day && item.poste !== poste) && setMultipleInscriptions(true);
-            setInscriptions([...inscriptions, { "poste": String(poste), "jour": String(day), "creneau": String(creneau) }]);
+            setInscriptions([...inscriptions, { "festival_id": festivalID, "poste": String(poste), "jour": String(day), "creneau": String(creneau) }]);
          } 
 
     }
@@ -131,6 +134,7 @@ const JobPlanning = () => {
                 "inscriptions": inscriptions,
                 "desinscriptions": desinscriptions
             }
+            console.log(data);
             const jsonData = JSON.stringify(data);
             const response = await axiosPrivate.post('/inscription/poste/batch-inscription', jsonData);
             console.log(response.data);
