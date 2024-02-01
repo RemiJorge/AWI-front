@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import useFestival from "../hooks/useFestival";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const JobPlanning = () => {
 
+    const { festival } = useFestival();
     const [isMounted, setIsMounted] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const controller = new AbortController();
@@ -37,7 +39,7 @@ const JobPlanning = () => {
     useEffect(() => {
 
         getJobs();
-
+        console.log("festival recu : " + festival.festival_id);
         return () => {
             setIsMounted(false);
             controller.abort();

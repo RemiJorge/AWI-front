@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
+import useFestival from '../hooks/useFestival';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import axios from '../api/axios';
@@ -7,6 +8,7 @@ const LOGIN_URL = '/auth/token';
 
 const Login = () => {
     const { setAuth, persist, setPersist } = useAuth();
+    const { setFestival } = useFestival();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -18,6 +20,16 @@ const Login = () => {
     const [user, setUser] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
+
+    const fetchFestival = async () => {
+        try {
+            //const response = await axios.get('/festival/active');
+            setFestival({ festival_id: 1, name: "Festival 2021"});
+        }
+        catch (err) {
+            console.error(err);
+        }
+    }
 
     useEffect(() => {
         userRef.current.focus();
@@ -48,10 +60,14 @@ const Login = () => {
             console.log(JSON.stringify(response?.data));
             //console.log(JSON.stringify(response));
             const accessToken = response?.data?.access_token;
+            const user_id = response?.data?.user_id;
             const roles = response?.data?.roles;
-            setAuth({ user, pwd, roles, accessToken });
+            setAuth({ user_id, user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
+
+            await fetchFestival();
+
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {
