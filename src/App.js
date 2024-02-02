@@ -10,7 +10,6 @@ import Admin from './views/Admin';
 import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
-import ActiveFestival from './components/ActiveFestival';
 import { Routes, Route } from 'react-router-dom';
 
 const ROLES = {

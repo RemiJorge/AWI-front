@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
-import useFestival from "../hooks/useFestival";
+
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const JobPlanning = () => {
-
-    const { festival } = useFestival();
-    const festivalID = festival.festival_id;
+    // object in localstorage
+    const [festival, setFestival] = useState(JSON.parse(localStorage.getItem('festival')));
     const [isMounted, setIsMounted] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
     const controller = new AbortController();
@@ -42,7 +41,7 @@ const JobPlanning = () => {
     const getJobs = async () => {
         setIsLoading(true);
         try {
-            const response = await axiosPrivate.get(`/inscription/poste?festival_id=${festivalID}`, { signal: controller.signal });
+            const response = await axiosPrivate.get(`/inscription/poste?festival_id=${festival.festival_id}`, { signal: controller.signal });
             console.log("jobs: " + response.data);
             isMounted && setJobs(response.data);
         } catch (err) {
@@ -55,7 +54,7 @@ const JobPlanning = () => {
     const getAnimation = async () => {
         setIsLoading(true);
         try {
-            const response = await axiosPrivate.get(`/inscription/zone-benevole?festival_id=${festivalID}`, { signal: controller.signal });
+            const response = await axiosPrivate.get(`/inscription/zone-benevole?festival_id=${festival.festival_id}`, { signal: controller.signal });
             console.log("animations: " + response.data);
             isMounted && setAnimations(response.data);
         } catch (err) {
@@ -181,7 +180,7 @@ const JobPlanning = () => {
         const my_inscriptions = dataTransformed.find(item => item.day === day).my_inscriptions;
         if (!showAnimation) {
             const data = []
-            my_inscriptions.map(item => data.push({ "festival_id": festivalID, "poste": item.poste, "jour": day, "creneau": item.creneau }));
+            my_inscriptions.map(item => data.push({ "festival_id": festival.festival_id, "poste": item.poste, "jour": day, "creneau": item.creneau }));
             setInscriptionsDisplay(data);
             setMultipleInscriptions(hasMultipleInscriptions(data));
         }  else {
@@ -218,7 +217,7 @@ const JobPlanning = () => {
         } else {
             // add inscription
             inscriptionsDisplay.find(item => item.creneau === creneau && item.jour === day && item.poste !== poste) && setMultipleInscriptions(true);
-            setInscriptionsDisplay([...inscriptionsDisplay, { "festival_id": festivalID, "poste": String(poste), "jour": String(day), "creneau": String(creneau) }]);
+            setInscriptionsDisplay([...inscriptionsDisplay, { "festival_id": festival.festival_id, "poste": String(poste), "jour": String(day), "creneau": String(creneau) }]);
         } 
     }
 
@@ -263,7 +262,7 @@ const JobPlanning = () => {
             const inscriptions = []
             inscriptionsDisplay.map(item => {
                 if (!my_inscriptions.find(inscription => inscription.poste === item.poste && inscription.creneau === item.creneau)) {
-                    inscriptions.push({ "festival_id": festivalID, "poste": item.poste, "jour": item.jour, "creneau": item.creneau });
+                    inscriptions.push({ "festival_id": festival.festival_id, "poste": item.poste, "jour": item.jour, "creneau": item.creneau });
                 }
             });
 
@@ -271,7 +270,7 @@ const JobPlanning = () => {
             const desinscriptions = []
             my_inscriptions.map(item => {
                 if (!inscriptionsDisplay.find(inscription => inscription.poste === item.poste && inscription.creneau === item.creneau)) {
-                    desinscriptions.push({ "festival_id": festivalID, "poste": item.poste, "jour": inscriptionDay, "creneau": item.creneau });
+                    desinscriptions.push({ "festival_id": festival.festival_id, "poste": item.poste, "jour": inscriptionDay, "creneau": item.creneau });
                 }
             });
 
@@ -367,7 +366,7 @@ const JobPlanning = () => {
         const inscriptions = []
         inscriptionsDisplay.map(item => {
             if (!my_inscriptions.find(inscription => inscription.poste === item.poste && inscription.creneau === item.creneau)) {
-                inscriptions.push({ "festival_id": festivalID, "poste": item.poste, "jour": item.jour, "creneau": item.creneau });
+                inscriptions.push({ "festival_id": festival.festival_id, "poste": item.poste, "jour": item.jour, "creneau": item.creneau });
             }
         });
 
