@@ -4,11 +4,13 @@ import useFestival from '../hooks/useFestival';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 import axios from '../api/axios';
+import useAxiosPrivate from "../hooks/useAxiosPrivate";
 const LOGIN_URL = '/auth/token';
 
 const Login = () => {
     const { setAuth, persist, setPersist } = useAuth();
     const { setFestival } = useFestival();
+    const axiosPrivate = useAxiosPrivate();
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -23,8 +25,8 @@ const Login = () => {
 
     const fetchFestival = async () => {
         try {
-            //const response = await axios.get('/festival/active');
-            setFestival({ festival_id: 1, name: "Festival 2021"});
+            const response = await axiosPrivate.get('/festival/active');
+            setFestival(response?.data);
         }
         catch (err) {
             console.error(err);

@@ -213,6 +213,11 @@ footer {
     color: white;
 }
 
+.cell-registered {
+    background-color: #5c5c5c;
+    color: white;
+}
+
 .planning-table-disabled {
     background-color: #f5f5f5;
 }
