@@ -7,6 +7,7 @@ import Register from './views/Register';
 import JobPlanning from './views/JobPlanning';
 import Login from './views/Login';
 import Admin from './views/Admin';
+import UsersSearch from './views/UsersSearch';
 import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
@@ -47,6 +48,7 @@ function App() {
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
               <Route path="admin" element={<Admin />} />
+              <Route path="users-search" element={<UsersSearch />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Super, ROLES.Admin]} />}>

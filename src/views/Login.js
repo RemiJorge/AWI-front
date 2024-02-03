@@ -21,16 +21,6 @@ const Login = () => {
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
 
-    const fetchFestival = async () => {
-        try {
-            const response = await axiosPrivate.get('/festival/active');
-            localStorage.setItem('festival', JSON.stringify(response.data));
-        }
-        catch (err) {
-            console.error(err);
-        }
-    }
-
     useEffect(() => {
         userRef.current.focus();
     }, [])
@@ -65,9 +55,6 @@ const Login = () => {
             setAuth({ user_id, user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
-
-            await fetchFestival();
-
             navigate(from, { replace: true });
         } catch (err) {
             if (!err?.response) {

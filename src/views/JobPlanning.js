@@ -3,10 +3,10 @@ import { useState, useEffect } from "react";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
 const JobPlanning = () => {
-    // object in localstorage
-    const [festival, setFestival] = useState(JSON.parse(localStorage.getItem('festival')));
+
+    const [festival, setFestival] = useState({});
     const [isMounted, setIsMounted] = useState(true);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const controller = new AbortController();
 
     // raw data
@@ -39,7 +39,6 @@ const JobPlanning = () => {
 
 
     const getJobs = async () => {
-        setIsLoading(true);
         try {
             const response = await axiosPrivate.get(`/inscription/poste?festival_id=${festival.festival_id}`, { signal: controller.signal });
             console.log("jobs: " + response.data);
@@ -64,17 +63,43 @@ const JobPlanning = () => {
         }
     }
 
+    const fetchFestival = async () => {
+        try {
+            const response = await axiosPrivate.get('/festival/active');
+            if (response.status === 200) {
+                setFestival(response.data);
+                return true;
+            } else {
+                console.log("Erreur lors de la récupération du festival actif");
+                setFestival({});
+                isMounted && setIsLoading(false);
+                return false;
+            }
+        }
+        catch (err) {
+            console.error(err);
+            return false;
+        } 
+    }
 
     useEffect(() => {
 
-        getJobs();
-        getAnimation();
-        console.log("festival recu : " + festival.festival_id);
+        fetchFestival();
         return () => {
             setIsMounted(false);
             controller.abort();
         }
     }, [])
+
+    useEffect(() => {
+        if (festival && Object.keys(festival).length > 0) {
+            getJobs();
+            getAnimation();
+        } else {
+            setIsLoading(false);
+        }
+
+    }, [festival])
 
 
     useEffect(() => {
@@ -241,12 +266,15 @@ const JobPlanning = () => {
         setShowAnimation(true);
         setAnimationDay(day);
         const animCreneaux = []
-        dataTransformed.find(item => item.day === day).my_inscriptions.map(item => {
-            if (item.poste.includes("Animation")) {
-                animCreneaux.push(item.creneau);
-            }
-        });
+        if (dataTransformed.find(item => item.day === day).my_inscriptions.length > 0) {
+            dataTransformed.find(item => item.day === day).my_inscriptions.map(item => {
+                if (item.poste.includes("Animation")) {
+                    animCreneaux.push(item.creneau);
+                }
+            });
+        }
         setAnimationCreneau(animCreneaux);
+        console.log(animationsTransformed)
         const data = []
         animationsTransformed.find(item => item.day === day).my_inscriptions.map(item =>
             data.push(item)
@@ -371,7 +399,7 @@ const JobPlanning = () => {
         });
 
         // si inscriptions contient des postes= Animations
-        if (inscriptions.find(item => item.poste.includes("Animation"))){
+        if (animationsTransformed.length > 0 && inscriptions.find(item => item.poste.includes("Animation"))){
             setShowAnimation(true)
             setAnimationDay(inscriptionDay);
             const animCreneaux = []
@@ -418,7 +446,8 @@ const JobPlanning = () => {
         <div className="content ">
             <h1>Planning des Postes</h1>
             {isLoading ? <p>Loading...</p>
-            :
+            : ( !festival || Object.keys(festival).length <= 0 ? <p>Pas de festival actif en cours</p>
+                : 
                 (dataTransformed?.length
                     ? (
                         <> { dataTransformed.map((day, i) => (
@@ -429,7 +458,8 @@ const JobPlanning = () => {
                                             <button onClick={() => handleMenuInscription(day.day)}>S'inscrire</button>
                                             {showAnimation && animationDay === day.day ? 
                                                 <button onClick={() => handleShowPoste(day.day)}>Voir les postes</button>
-                                                : <button onClick={() => handleShowAnimation(day.day)}>Voir les animations</button>
+                                                : animationsTransformed.length > 0 &&
+                                                <button onClick={() => handleShowAnimation(day.day)}>Voir les animations</button>
                                             }
                                         </>
                                         : inscriptionDay === day.day && <>
@@ -539,7 +569,7 @@ const JobPlanning = () => {
                             )
                     : <p>No jobs to display</p>
                 )
-
+            )
             }
         </div>
     )
