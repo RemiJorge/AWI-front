@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
@@ -8,7 +9,12 @@ const JobPlanning = () => {
     const [isMounted, setIsMounted] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const controller = new AbortController();
+    const navigate = useNavigate();
 
+    // raw data
+    const [poste, setPoste] = useState("");
+    // raw data
+    const [games, setGames] = useState([]);
     // raw data
     const [jobs, setJobs] = useState({});
     // transformed data for display
@@ -40,6 +46,7 @@ const JobPlanning = () => {
     // posteDetails
     const [posteDetails, setPosteDetails] = useState("");
     const [dayDetails, setDayDetails] = useState("");
+    const [gameDetails, setGameDetails] = useState([]);
     const axiosPrivate = useAxiosPrivate();
 
 
@@ -87,6 +94,43 @@ const JobPlanning = () => {
         } 
     }
 
+    const getZoneGame = (game) => {
+        return game.zone_benevole === "" ? game.zone_plan : game.zone_benevole;
+    }
+
+    const fetchGames = async () => {
+        try {
+            const response = await axiosPrivate.get('/file/jeux');
+            if (response.status === 200) {
+                if (response.data.length > 0) {
+                    // select only attributes name, recu
+                    response.data = response.data.map(item => {
+                        return {
+                            name: item.nom_du_jeu,
+                            espace : getZoneGame(item),
+                            recu: item.recu
+                        }
+                    });
+                }
+                console.log(response.data);
+                setGames(response.data);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    const fetchPoste = async () => {
+        try {
+            const response = await axiosPrivate.get(`/poste/${festival.festival_id}`);
+            if (response.status === 200) {
+                setPoste(response.data);
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
     useEffect(() => {
 
         fetchFestival();
@@ -100,6 +144,8 @@ const JobPlanning = () => {
         if (festival && Object.keys(festival).length > 0) {
             getJobs();
             getAnimation();
+            fetchGames();
+            fetchPoste();
         } else {
             setIsLoading(false);
         }
@@ -464,6 +510,22 @@ const JobPlanning = () => {
         }
     }
 
+    const handleShowDetailsAnimation = (zone, day) => {
+        if (showDetails && posteDetails === zone && day === dayDetails) {
+            setShowDetails(false);
+            setPosteDetails("");
+            setDayDetails("");
+            setGameDetails([]);
+        } else {
+            setShowDetails(true);
+            setPosteDetails(zone);
+            setDayDetails(day);
+            const game = games.filter(item => item.espace === zone);
+            console.log(game);
+            setGameDetails(game);
+        }
+    }
+
     return (
         <div className="content ">
             <h1>Planning des Postes</h1>
@@ -519,9 +581,7 @@ const JobPlanning = () => {
                                                         <td className="row-title" onClick={() => handleShowDetails(poste, day.day)}>{poste}</td>
                                                         {showDetails && poste === posteDetails && day.day === dayDetails ?
                                                             <td colSpan={day.creneaux.length} className="detail-poste">
-                                                                
-                                                                Animation
-                                                                
+                                                                <button onClick={() => navigate(`/contact-referent/${festival.festival_id}/${poste}`)}>Contacter un Réferent</button>
                                                                 </td>
                                                         : day.creneaux.map((creneau, i) => (
                                                                 <td key={i}
@@ -567,14 +627,25 @@ const JobPlanning = () => {
                                                 <tbody>
                                                     {animation.zones.map((zone, i) => (
                                                         <tr key={i}>
-                                                            <td className="row-title">{zone}</td>
-                                                            {animation.creneaux.map((creneau, i) => (
+                                                            <td className="row-title" onClick={() => handleShowDetailsAnimation(zone, day.day)}>{zone}</td>
+                                                            {showDetails && posteDetails === zone && day.day === dayDetails ?
+                                                                <td colSpan={animation.creneaux.length} className="detail-poste">
+                                                                    {!gameDetails || Object.keys(gameDetails).length === 0 ? 
+                                                                        <div>Pas de jeux pour cette espace</div>
+                                                                    : gameDetails.map((game, i) => (
+                                                                            <div key={i}>
+                                                                                <div>{game.name}</div>
+                                                                                <div>{game.recu}</div>
+                                                                            </div>
+                                                                        ))}
+                                                                </td>
+                                                            : animation.creneaux.map((creneau, i) => (
                                                                 <td key={i}
                                                                 className="row-number"
                                                                 onClick={isRegistering && inscriptionDay === day.day && animationCreneau.includes(creneau)
                                                                     ? () => handleAnimationInscription({...animation.data[zone]?.[creneau], zone: zone, creneau: creneau})
                                                                     : null }
-                                                                >
+                                                                > {(!showDetails || day.day !== dayDetails)&&
                                                                     <div className={
                                                                         isRegistering && inscriptionDay === day.day ? (
                                                                             inscriptionsAnimationDisplay.find(item => item.zone === zone && item.creneau === creneau) ? "cell cell-selected" 
@@ -585,6 +656,7 @@ const JobPlanning = () => {
                                                                         )}>
                                                                         {(animation.data[zone]?.[creneau]?.nb_inscriptions >= 0) ? animation.data[zone]?.[creneau]?.nb_inscriptions : "/"}
                                                                     </div>
+                                                                    }
                                                                 </td>
                                                             ))}
                                                         </tr>

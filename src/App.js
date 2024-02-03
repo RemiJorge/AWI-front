@@ -10,6 +10,7 @@ import Admin from './views/Admin';
 import PosteReferent from './views/PosteReferent';
 import FestivalInfo from './views/FestivalInfo';
 import UsersSearch from './views/UsersSearch';
+import ContactReferent from './views/ContactReferent';
 import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
@@ -41,6 +42,7 @@ function App() {
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
               <Route path="job-planning" element={<JobPlanning />} />
+              <Route path="contact-referent/:id/:posteName" element={<ContactReferent />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Super]} />}>
