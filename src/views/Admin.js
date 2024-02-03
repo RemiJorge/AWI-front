@@ -23,6 +23,7 @@ const Admin = () => {
     const fetchFestivals = async () => {
         try {
             const response = await axiosPrivate.get(FESTIVAL_URL);
+            response.data.sort((a, b) => b.festival_id - a.festival_id);
             setFestivals(response.data);
         }
         catch (err) {
@@ -67,19 +68,6 @@ const Admin = () => {
             fetchFestivals();
         }
     }
-     
-    const DeleteFestival = async (festivalID) => {
-        try {
-            const response = await axiosPrivate.delete(FESTIVAL_URL + '?festival_id=' + festivalID);
-            console.log(response);
-        }
-        catch (err) {
-            console.log(err);
-        } finally {
-            fetchFestivals();
-            fetchFestivalActive();
-        }
-    }
 
     const handleFileUpload = async () => {
         try{
@@ -114,6 +102,9 @@ const Admin = () => {
         }
         catch (err) {
             console.log(err);
+        } finally {
+            fetchFestivals();
+            setOpenCreateFestival(false);
         }
     }
 
@@ -144,7 +135,7 @@ const Admin = () => {
 
             <h2>Créer un festival</h2>
             {openCreateFestival &&
-                <form onSubmit={handleCreateFestival}>
+                <div>
                     <div>
                         <label htmlFor="festival_name">Nom</label>
                         <input type="text" id="festival_name" required onChange={(e) => setFestivalName(e.target.value)} />
@@ -153,8 +144,8 @@ const Admin = () => {
                         <label htmlFor="festival_description">Description</label>
                         <input type="text" id="festival_description" required onChange={(e) => setFestivalDescription(e.target.value)} />
                     </div>
-                    <button>Créer</button>
-                </form>
+                    <button onClick={handleCreateFestival}>Créer</button>
+                </div>
             }
             <button onClick={() => setOpenCreateFestival(!openCreateFestival)}>
                 {openCreateFestival ? "Annuler" : "Créer un festival"}
@@ -173,12 +164,9 @@ const Admin = () => {
                                         Activer
                                     </button>
                                 }
-                                {(!festival.is_active) &&
-                                    <button onClick={() => DeleteFestival(festival.festival_id)}>
-                                        Supprimer
-                                    </button>
-                                }
-
+                                <button onClick={() => navigate('/festival-info/' + festival.festival_id)}>
+                                    Détail
+                                </button>
                             </li>
                             
                         )}
