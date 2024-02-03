@@ -7,6 +7,7 @@ import Register from './views/Register';
 import JobPlanning from './views/JobPlanning';
 import Login from './views/Login';
 import Admin from './views/Admin';
+import PosteReferent from './views/PosteReferent';
 import FestivalInfo from './views/FestivalInfo';
 import UsersSearch from './views/UsersSearch';
 import Home from './views/Home';
@@ -49,7 +50,8 @@ function App() {
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
               <Route path="admin" element={<Admin />} />
-              <Route path="festival-info/:id" element={<FestivalInfo />} />
+              <Route path="festival-info/:id" element={<FestivalInfo />}/>
+              <Route path="festival-info/:id/animation-referent/:posteId" element={<PosteReferent />} />
               <Route path="users-search" element={<UsersSearch />} />
             </Route>
 

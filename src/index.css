@@ -89,6 +89,12 @@ footer {
     border : 2px solid #dddddd;
 }
 
+.detail-poste{
+    height: 80px;
+    border : 1px solid #a3a3a3;
+    border-radius: 10px;
+    padding: 10px;
+}   
 .form-group input:focus {
     background-color: #ffffff;
 }
@@ -178,6 +184,7 @@ footer {
 
 .row-title {
  width: 150px;
+ height: 50px;
  border: 1px solid #ddd;
 }
 

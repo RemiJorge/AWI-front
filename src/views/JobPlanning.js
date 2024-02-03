@@ -35,6 +35,11 @@ const JobPlanning = () => {
     const [inscriptionsAnimationDisplay, setInscriptionsAnimationDisplay] = useState([]);
     // show error message
     const [statusLabelAnimation, setStatusLabelAnimation] = useState("");
+    // showDetails
+    const [showDetails, setShowDetails] = useState(false);
+    // posteDetails
+    const [posteDetails, setPosteDetails] = useState("");
+    const [dayDetails, setDayDetails] = useState("");
     const axiosPrivate = useAxiosPrivate();
 
 
@@ -201,6 +206,7 @@ const JobPlanning = () => {
 
     const handleMenuInscription = (day) => {
         setIsRegistering(true);
+        setShowDetails(false);
         setInscriptionDay(day);
         const my_inscriptions = dataTransformed.find(item => item.day === day).my_inscriptions;
         if (!showAnimation) {
@@ -260,6 +266,7 @@ const JobPlanning = () => {
         setAnimationDay("");
         setAnimationCreneau([]);
         setInscriptionsAnimationDisplay([]);
+        setShowDetails(false);
     }
 
     const handleShowAnimation = (day) => {
@@ -280,6 +287,7 @@ const JobPlanning = () => {
             data.push(item)
         );
         setInscriptionsAnimationDisplay(data);
+        setShowDetails(false);
     }
 
 
@@ -323,6 +331,7 @@ const JobPlanning = () => {
             setIsRegistering(false);
             setInscriptionDay("");
             setInscriptionsDisplay([]);
+            setShowDetails(false);
             getJobs();
         }
     }
@@ -381,6 +390,7 @@ const JobPlanning = () => {
             setInscriptionDay("");
             setInscriptionsDisplay([]);
             getAnimation();
+            setShowDetails(false);
         }
     }
 
@@ -438,9 +448,21 @@ const JobPlanning = () => {
             setAnimationDay("");
             setAnimationCreneau([]);
             setInscriptionsAnimationDisplay([]);
+            setShowDetails(false);
         }
     }
 
+    const handleShowDetails = (poste, day) => {
+        if (showDetails && poste === posteDetails && day === dayDetails) {
+            setShowDetails(false);
+            setPosteDetails("");
+            setDayDetails("");
+        } else {
+            setShowDetails(true);
+            setPosteDetails(poste);
+            setDayDetails(day);
+        }
+    }
 
     return (
         <div className="content ">
@@ -479,7 +501,7 @@ const JobPlanning = () => {
                                                 <p>Vous êtes flexible : un admin choisira pour vous l'un des postes sélectionnés.</p>
                                             </div>
                                         }
-
+                                        
                                         <table className={isRegistering ? (
                                             inscriptionDay === day.day ?
                                             "planning-table-registering"
@@ -494,24 +516,32 @@ const JobPlanning = () => {
                                             <tbody>
                                                 {day.postes.map((poste, i) => (
                                                     <tr key={i}>
-                                                        <td className="row-title">{poste}</td>
-                                                        {day.creneaux.map((creneau, i) => (
-                                                            <td key={i}
-                                                            className="row-number"
-                                                            onClick={isRegistering && inscriptionDay === day.day ? () => handleInscription(day.day, poste, creneau) : null}
-                                                            >
-                                                                    <div className={
-                                                                        (isRegistering && inscriptionDay === day.day ? (
-                                                                        inscriptionsDisplay.find(item => item.poste === poste && item.jour === day.day && item.creneau === creneau)
-                                                                        ? "cell cell-selected" : "cell")
-                                                                        : (day.my_inscriptions.find(item => item.poste === poste && item.creneau === creneau) ? "cell cell-registered"
-                                                                        : "cell")
-                                                                        )}>
-                                                                        {(day.data[poste]?.[creneau] >= 0) ? day.data[poste]?.[creneau] : "/"}
-                                                                    </div>
-                                                            
-                                                            </td>
-                                                        ))}
+                                                        <td className="row-title" onClick={() => handleShowDetails(poste, day.day)}>{poste}</td>
+                                                        {showDetails && poste === posteDetails && day.day === dayDetails ?
+                                                            <td colSpan={day.creneaux.length} className="detail-poste">
+                                                                
+                                                                Animation
+                                                                
+                                                                </td>
+                                                        : day.creneaux.map((creneau, i) => (
+                                                                <td key={i}
+                                                                className="row-number"
+                                                                onClick={isRegistering && inscriptionDay === day.day ? () => handleInscription(day.day, poste, creneau) : null}
+                                                                >   {(!showDetails || day.day !== dayDetails) &&
+                                                                        <div className={
+                                                                            (isRegistering && inscriptionDay === day.day ? (
+                                                                            inscriptionsDisplay.find(item => item.poste === poste && item.jour === day.day && item.creneau === creneau)
+                                                                            ? "cell cell-selected" : "cell")
+                                                                            : (day.my_inscriptions.find(item => item.poste === poste && item.creneau === creneau) ? "cell cell-registered"
+                                                                            : "cell")
+                                                                            )}>
+                                                                            {(day.data[poste]?.[creneau] >= 0) ? day.data[poste]?.[creneau] : "/"}
+                                                                        </div>
+                                                                    }
+                                                                
+                                                                </td>
+                                                            ))
+                                                        }
                                                     </tr>
                                                 ))}
                                             </tbody>
