@@ -48,7 +48,7 @@ const Contact = () => {
 
     return (
         <div className="message-user-container-mu" style={{ marginTop: '20px' }}>
-            <h2>Vous contactez: {username}</h2>
+            <h3 style={{ marginBottom: '20px' }}>Vous contactez: {username}</h3>
 
             {!isSent ? (
                 <div className='form-group'>
@@ -69,7 +69,7 @@ const Contact = () => {
                 </div>
             ) : (
                 <div>
-                    <h3>Message Envoyé!</h3>
+                    <h4 style={{ marginBottom: '20px' }}>Message Envoyé!</h4>
                     <button className='cancel-button-mu' onClick={handleBack}>Voir mes messages</button>
                 </div>
             )}
