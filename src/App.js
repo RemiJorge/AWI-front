@@ -22,6 +22,7 @@ import Messages from './views/Messages';
 import Contact from './views/Contact';
 import ContactMesBenevoles from './views/ContactMesBenevoles';
 import ContactEveryone from './views/ContactEveryone';
+import RGPD from './views/RGPD';
 
 const ROLES = {
   'User': 'User',
@@ -57,6 +58,7 @@ function App() {
               <Route path="profile/:user_id" element={<OtherUserProfile />} />
               <Route path="contact-referent/:id/:posteName" element={<ContactReferent />} />
               <Route path="contact/:username/:user_id" element={<Contact />} />
+              <Route path="rgpd" element={<RGPD />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Referent]} />}>

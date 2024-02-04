@@ -444,3 +444,13 @@ footer {
   font-size: 16px;
 }
 
+.rgpd-button {
+  padding: 10px 15px;
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}

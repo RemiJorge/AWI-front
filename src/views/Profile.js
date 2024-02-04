@@ -118,6 +118,7 @@ const Profile = () => {
                         Taille T-Shirt:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="tshirt"
                         value={modifiedData.tshirt}
                         onChange={handleInputChange}
@@ -143,6 +144,7 @@ const Profile = () => {
                         Vegan:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="vegan"
                         value={modifiedData.vegan}
                         onChange={handleInputChange}
@@ -157,6 +159,7 @@ const Profile = () => {
                         Hebergement:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="hebergement"
                         value={modifiedData.hebergement}
                         onChange={handleInputChange}
