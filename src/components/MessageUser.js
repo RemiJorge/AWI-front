@@ -56,7 +56,7 @@ const MessageUser = ({ festival_id, user_id, username, message, setter }) => {
                             value={reply}
                             onChange={handleReplyChange}
                             rows={4}
-                            placeholder="Votre réponse..."
+                            placeholder="Tapez ici..."
                         />
                     </div>
 

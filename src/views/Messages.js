@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import MessageUser from '../components/MessageUser';
+import useAuth from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Messages = () => {
+
+    const navigate = useNavigate();
+    const { auth } = useAuth();
     const axiosPrivate = useAxiosPrivate();
     const [activeFestival, setActiveFestival] = useState(null);
     const [messages, setMessages] = useState([]);
@@ -43,29 +48,48 @@ const Messages = () => {
     }
 
     if (messages.length === 0) {
-        return <div>No messages available</div>;
+        return (
+            <div>
+                <h2 className="messages-heading">Messages</h2>
+                {auth.roles.includes('Referent') && (
+                    <button className='all-benev-button' style = {{marginRight: '5px'}} onClick={() => navigate('/contact/mes-benevoles/')}>Envoyer un message a mes bénévoles</button>
+                )}
+                {auth.roles.includes('Admin') && (
+                    <button className='all-benev-button' onClick={() => navigate('/contact/everyone/')}>Envoyer un message a tout les bénévoles</button>
+                )}
+                <div>No messages available</div>
+            </div>
+        );
     }
 
     return (
         <div>
             <h2 className="messages-heading">Messages</h2>
             {!selectedMessage ? (
-                <ul className="message-list">
-                    {messages.map(message => (
-                        <li key={message.message_id} className="message-item">
-                            <div className="message-header" >
-                                <div><strong>From:</strong> {message.user_from_username} ({message.user_from_role})</div>
-                                <button className='reply-button' onClick={() => handleSelectMessage(message)}>Reply</button>
-                            </div>
-                            <div className="message-date">
-                                <strong>Date:</strong> {new Date(message.msg_date).toLocaleString()}
-                            </div>
-                            <div className="message-content">
-                                <strong>Message:</strong> {message.msg}
-                            </div>
-                        </li>
-                    ))}
-                </ul>
+                <>
+                    {auth.roles.includes('Referent') && (
+                        <button className='all-benev-button' style =  {{marginRight: '5px'}} onClick={() => navigate('/contact/mes-benevoles/')}>Envoyer un message a mes bénévoles</button>
+                    )}
+                    {auth.roles.includes('Admin') && (
+                        <button className='all-benev-button' onClick={() => navigate('/contact/everyone/')}>Envoyer un message a tout les bénévoles</button>
+                    )}
+                    <ul className="message-list">
+                        {messages.map(message => (
+                            <li key={message.message_id} className="message-item">
+                                <div className="message-header" >
+                                    <div><strong>From:</strong> {message.user_from_username} ({message.user_from_role})</div>
+                                    <button className='reply-button' onClick={() => handleSelectMessage(message)}>Reply</button>
+                                </div>
+                                <div className="message-date">
+                                    <strong>Date:</strong> {new Date(message.msg_date).toLocaleString()}
+                                </div>
+                                <div className="message-content">
+                                    <strong>Message:</strong> {message.msg}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </>
             ) : (
                 <MessageUser {...selectedMessage} setter={setSelectedMessage} />
             )}
