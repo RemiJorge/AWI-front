@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 import { useNavigate } from 'react-router-dom';
+import '../styles/admin.css';
 
 const FILE_URL = "/file"
 const FESTIVAL_ACTIF_URL = "/festival/active"
@@ -109,71 +110,92 @@ const Admin = () => {
     }
 
     return (
-        <div className="content">
-            <h1>Admin</h1>
-            <button onClick={() => navigate('/users-search')}> Rechercher des utilisateurs</button>
-            {!festivalActive || Object.keys(festivalActive).length === 0 ?
-                <p>Pas de festival actif en cours</p>
-            :<>
-                <p>Festival actif en cours : {festivalActive.festival_name}</p>
-                <p>Description : {festivalActive.festival_description}</p>
-                <button onClick={() => handleActivateFestival(festivalActive.festival_id, false)}>Désactiver</button>
-                <p>Charger un fichier de type CSV</p>
-                <div className="upload-file">
-                    <input 
-                        type="file"
-                        id = "filecsv"
-                        accept=".csv"
-                        onChange={handleFileChange}
-                    />
-                    <label htmlFor="filecsv">{fileName}</label>
-                    {file &&
-                        <button onClick={handleFileUpload}>Upload</button>
+        <div className="admin-content">
+            <h1>Gestion Administrateur</h1>
+            <button className="search-users-button" onClick={() => navigate('/users-search')}> Rechercher des utilisateurs</button>
+            <div className='festivals-frame'>
+                <div className='festival-actif-frame'>
+                    <h2>Festival actif</h2>
+                    <div className='festival-actif-content'>
+                        {!festivalActive || Object.keys(festivalActive).length === 0 ?
+                            <p>Pas de festival actif en cours</p>
+                        :<>
+                            <div className="festival-description-frame">
+                                <p>Nom du Festival: {festivalActive.festival_name}</p>
+                                <p>Description : {festivalActive.festival_description}</p>
+                                <div className="description-actif-button">
+                                    <button className="info-actif-button" onClick={() => navigate('/festival-info/' + festivalActive.festival_id)}>Modifier</button>
+                                    <button className="desactiver-button" onClick={() => handleActivateFestival(festivalActive.festival_id, false)}>Désactiver</button>
+                                </div>
+                            </div>
+                            <div className="upload-csv-frame">
+                                <p>Uploader un fichier CSV pour ajouter des animations</p>
+                                <div className="upload-file">
+                                    <input 
+                                        type="file"
+                                        id = "filecsv"
+                                        accept=".csv"
+                                        onChange={handleFileChange}
+                                    />
+                                    <label htmlFor="filecsv">{fileName}</label>
+                                    {file &&
+                                        <button onClick={handleFileUpload}>Upload</button>
+                                    }
+                                </div>
+                            </div>
+                        </>}
+                    </div>
+                </div>
+                <div className='festivals-list-frame'>
+                    <h2>Festivals</h2>
+                    {openCreateFestival ?
+                        <div className="form-create-festival">
+                            <div className="form-input">
+                                <label htmlFor="festival_name">Nom</label>
+                                <input type="text" id="festival_name" required onChange={(e) => setFestivalName(e.target.value)} />
+                            </div>
+                            <div className="form-input">
+                                <label htmlFor="festival_description">Description</label>
+                                <input type="text" id="festival_description" required onChange={(e) => setFestivalDescription(e.target.value)} />
+                            </div>
+                            <button className="create-festival-button" onClick={handleCreateFestival}>Créer</button>
+                        </div>
+                    : <button className="create-festival-button" onClick={() => setOpenCreateFestival(true)}>Créer un festival</button>
+                    }
+
+                    {festivals.length > 0 && 
+                        <>
+                            <ul>
+                                {festivals.filter(festival => {
+                                    if (festivalActive && Object.keys(festivalActive).length !== 0) {
+                                        return festival.festival_id !== festivalActive.festival_id
+                                    } else {
+                                        return true
+                                    }
+                                    }).map((festival, index) => 
+                                    <li key={index}>
+                                        <div className="festivals-list-description-frame">
+                                            <div>Nom:{festival.festival_name}</div>
+                                            <div>{festival.festival_description}</div>
+                                            <div className='festival-list-button-frame'>
+                                                {(!festivalActive || Object.keys(festivalActive).length === 0 ) &&
+                                                    <button onClick={() => handleActivateFestival(festival.festival_id, true)}>
+                                                        Activer
+                                                    </button>
+                                                }
+                                                <button onClick={() => navigate('/festival-info/' + festival.festival_id)}>
+                                                    Modifier
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    
+                                )}
+                            </ul>
+                        </>
                     }
                 </div>
-            </>}
-
-            <h2>Créer un festival</h2>
-            {openCreateFestival &&
-                <div>
-                    <div>
-                        <label htmlFor="festival_name">Nom</label>
-                        <input type="text" id="festival_name" required onChange={(e) => setFestivalName(e.target.value)} />
-                    </div>
-                    <div>
-                        <label htmlFor="festival_description">Description</label>
-                        <input type="text" id="festival_description" required onChange={(e) => setFestivalDescription(e.target.value)} />
-                    </div>
-                    <button onClick={handleCreateFestival}>Créer</button>
-                </div>
-            }
-            <button onClick={() => setOpenCreateFestival(!openCreateFestival)}>
-                {openCreateFestival ? "Annuler" : "Créer un festival"}
-            </button>
-
-            {festivals.length > 0 && 
-                <div>
-                    <h2>Festivals</h2>
-                    <ul>
-                        {festivals.map((festival, index) => 
-                            <li key={index}>
-                                <div>{festival.festival_name}</div>
-                                <div>Description : {festival.festival_description}</div>
-                                {(!festivalActive || Object.keys(festivalActive).length === 0 ) &&
-                                    <button onClick={() => handleActivateFestival(festival.festival_id, true)}>
-                                        Activer
-                                    </button>
-                                }
-                                <button onClick={() => navigate('/festival-info/' + festival.festival_id)}>
-                                    Détail
-                                </button>
-                            </li>
-                            
-                        )}
-                    </ul>
-                </div>
-            }
-            
+            </div>
         </div>
     )
 }

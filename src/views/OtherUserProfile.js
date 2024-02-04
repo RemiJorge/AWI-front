@@ -42,6 +42,7 @@ const OtherUserProfile = () => {
                 <div>
                     <strong>Username:</strong> {userData.username}
                 </div>
+                {/*
                 <div>
                     <strong>Email:</strong> {userData.email}
                 </div>
@@ -51,12 +52,15 @@ const OtherUserProfile = () => {
                 <div>
                     <strong>Prénom:</strong> {userData.prenom}
                 </div>
+                */}
                 <div>
                     <strong>Telephone:</strong> {userData.telephone}
                 </div>
+                {userData.association &&
                 <div>
                     <strong>Association:</strong> {userData.association}
                 </div>
+                }
                 <div>
                     <strong>Taille T-Shirt:</strong> {userData.tshirt}
                 </div>
