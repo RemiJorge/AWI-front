@@ -535,3 +535,33 @@ footer {
 .video-container {
   margin-top: 10px;
 }
+
+
+.games-container-list {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.games-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.game-item-list {
+  width: 100%;
+  max-width: 300px;
+  background-color: #f8f8f8;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.game-item-list img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+}
+
