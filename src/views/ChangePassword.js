@@ -68,14 +68,14 @@ const ChangePassword = () => {
                         />
                     </div>
                     {error && <div style={{ color: 'red' }}>{error}</div>}
-                    <button onClick={handleSubmit}>Changer Mot de Passe</button>
+                    <button className="send-button-mu" onClick={handleSubmit}>Changer Mot de Passe</button>
                 </div>
             )}
 
             {successMessage && (
                 <div>
                     <p>Mot de passe changé avec succès!</p>
-                    <button onClick={handleGoToProfile}>Go to Profile</button>
+                    <button className="send-button-mu" onClick={handleGoToProfile}>Go to Profile</button>
                 </div>
             )}
         </div>

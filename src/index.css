@@ -536,6 +536,7 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .cancel-button-mu {
@@ -545,6 +546,14 @@ footer {
   .send-button-mu {
     background-color: gray;
     color: #fff;
+  }
+
+  .send-button-mu:hover {
+    background-color: darkgrey
+  }
+
+  .cancel-button-mu:hover {
+    background-color: lightgrey
   }
   
   .all-benev-button {
@@ -556,6 +565,10 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
+  }
+
+  .all-benev-button:hover {
+    background-color: darkgrey
   }
 
 
@@ -580,3 +593,81 @@ footer {
   font-size: 16px;
 }
 
+.rgpd-button {
+  padding: 10px 15px;
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.rgpd-button:hover {
+  background-color: red
+}
+
+.delete-msg-button {
+  padding: 3px 6px;
+  background-color: darkred;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 10px;
+}
+
+.game-details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h2-game {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.img-game {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.p-game {
+  margin-bottom: 10px;
+}
+
+
+.a-game {
+  color: darkblue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.a-game:hover {
+  text-decoration: underline;
+}
+
+.tags-container {
+  margin-top: 10px;
+}
+
+.tags-container span {
+  display: inline-block;
+  background-color: darkslategray;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.video-container {
+  margin-top: 10px;
+}

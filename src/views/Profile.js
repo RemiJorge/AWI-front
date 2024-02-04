@@ -118,6 +118,7 @@ const Profile = () => {
                         Taille T-Shirt:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="tshirt"
                         value={modifiedData.tshirt}
                         onChange={handleInputChange}
@@ -143,6 +144,7 @@ const Profile = () => {
                         Vegan:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="vegan"
                         value={modifiedData.vegan}
                         onChange={handleInputChange}
@@ -157,6 +159,7 @@ const Profile = () => {
                         Hebergement:
                     </label>
                     <select
+                        className='select-element-mu'
                         name="hebergement"
                         value={modifiedData.hebergement}
                         onChange={handleInputChange}
@@ -172,12 +175,12 @@ const Profile = () => {
                 {message}
             </div>
 
-            <button style={{ marginRight: '10px' }} onClick={() => navigate('/change-password')}>
+            <button className="send-button-mu" style={{ marginRight: '10px' }} onClick={() => navigate('/change-password')}>
                 Changer Mot de Passe
             </button>
 
-            {!isEditMode && <button onClick={handleEditClick}>Edit</button>}
-            {isEditMode && <button onClick={handleConfirmClick}>Confirm</button>}
+            {!isEditMode && <button className="send-button-mu" onClick={handleEditClick}>Edit</button>}
+            {isEditMode && <button className="send-button-mu" onClick={handleConfirmClick}>Confirm</button>}
         </div>
     );
 };

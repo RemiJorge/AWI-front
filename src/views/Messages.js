@@ -32,6 +32,28 @@ const Messages = () => {
         fetchMessages();
     }, [axiosPrivate, selectedMessage]);
 
+    const handleDeleteMessage = async (message_id) => {
+        try {
+            const response = await axiosPrivate.delete('/message/' + "?message_id=" + message_id);
+            console.log(response);
+            const response2 = await axiosPrivate.get('/message/' + (activeFestival ? activeFestival : ''));
+            setMessages(response2.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    const handleDeleteAllMessages = async () => {
+        try {
+            const response = await axiosPrivate.delete('/message/clear-all/' + (activeFestival ? activeFestival : ''));
+            console.log(response);
+            const response2 = await axiosPrivate.get('/message/' + (activeFestival ? activeFestival : ''));
+            setMessages(response2.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
     const handleSelectMessage = (message) => {
         console.log('Selected message:', message);
         const to_set = {
@@ -57,7 +79,7 @@ const Messages = () => {
                 {auth.roles.includes('Admin') && (
                     <button className='all-benev-button' onClick={() => navigate('/contact/everyone/')}>Envoyer un message a tout les bénévoles</button>
                 )}
-                <div>No messages available</div>
+                <div>Nous n'avez pas de messages</div>
             </div>
         );
     }
@@ -77,8 +99,11 @@ const Messages = () => {
                         {messages.map(message => (
                             <li key={message.message_id} className="message-item">
                                 <div className="message-header" >
-                                    <div><strong>From:</strong> {message.user_from_username} ({message.user_from_role})</div>
-                                    <button className='reply-button' onClick={() => handleSelectMessage(message)}>Reply</button>
+                                    <div><strong>De:</strong> {message.user_from_username} ({message.user_from_role})</div>
+                                    <div>
+                                    <button className='reply-button' style={{marginRight: '3px'}} onClick={() => handleSelectMessage(message)}>Repondre</button>
+                                    <button className='delete-msg-button' onClick={() => handleDeleteMessage(message.message_id)}>Supprimer</button>
+                                    </div>
                                 </div>
                                 <div className="message-date">
                                     <strong>Date:</strong> {new Date(message.msg_date).toLocaleString()}
@@ -89,6 +114,7 @@ const Messages = () => {
                             </li>
                         ))}
                     </ul>
+                    <button className='delete-msg-button' onClick={() => handleDeleteAllMessages()}>Supprimer tous les messages</button>
                 </>
             ) : (
                 <MessageUser {...selectedMessage} setter={setSelectedMessage} />
