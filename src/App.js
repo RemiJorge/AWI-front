@@ -13,6 +13,10 @@ import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
 import { Routes, Route } from 'react-router-dom';
+import Profile from './views/Profile';
+import ChangePassword from './views/ChangePassword';
+import OtherUserProfile from './views/OtherUserProfile';
+import Messages from './views/Messages';
 
 const ROLES = {
   'User': 'User',
@@ -40,6 +44,11 @@ function App() {
           <Route element={<PersistLogin />}>
             <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
               <Route path="job-planning" element={<JobPlanning />} />
+              <Route path="profile" element={<Profile />} />
+              <Route path="change-password" element={<ChangePassword />} />
+              <Route path="messages" element={<Messages />} />
+              {/*dynamic route for profile*/}
+              <Route path="profile/:user_id" element={<OtherUserProfile />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Super]} />}>

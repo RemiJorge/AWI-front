@@ -22,7 +22,8 @@ const NabBar = () => {
                 {auth?.roles?.includes("Admin") && <Link to="/admin">Admin</Link>}
                 {auth?.accessToken ? 
                     <>
-                        <div>{auth?.user ? auth?.user : "profile"}</div>
+                        <div><Link to="/messages">Messages</Link></div>
+                        <div><Link to="/profile">Profile</Link></div>
                         <button onClick={signOut}>Se déconnecter</button>
                     </>
                     : <Link to="/login">Connectez-vous</Link>

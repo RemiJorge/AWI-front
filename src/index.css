@@ -293,3 +293,170 @@ footer {
     background-color: #999999;
     border : 2px solid #dddddd;
 }
+
+/* ALEX OTHERSPROFILE CSS */
+
+.profile-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+  }
+  
+  .profile-heading {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: black
+  }
+  
+  .profile-info {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    text-align: left;
+  }
+  
+  .contact-button {
+    padding: 10px 15px;
+    background-color: gray;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .contact-button:hover {
+    background-color: darkgrey
+  }
+  
+
+
+
+/* ALEX MESSAGES CSS */
+
+.messages-heading {
+    font-size: 24px;
+    color: black;
+    margin-bottom: 20px;
+  }
+  
+  .message-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    min-width: 500px;
+    text-wrap: normal;
+    max-width: 700px;
+  }
+
+  /*On phones, the message list will be full width*/
+    @media (max-width: 500px) {
+        .message-list {
+        min-width: 100%;
+        max-width: 100%;
+        margin-left: 5px;
+        margin-right: 5px;
+        }
+    }
+  
+  .message-item {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    padding: 15px;
+  }
+  
+  .message-header {
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .message-date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 8px;
+  }
+  
+  .message-content {
+    font-size: 16px;
+  }
+
+  .reply-button {
+    padding: 3px 6px;
+    background-color: gray;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+
+/* ALEX MESSAGE USER CSS */
+
+.message-user-container-mu {
+    max-width: 700px;
+    min-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .confirmation-mu {
+    text-align: center;
+  }
+  
+  .message-content-mu {
+    text-align: left;
+  }
+  
+  .message-header-mu {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .message-body-mu {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    resize: vertical;
+  }
+  
+  .buttons-mu {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cancel-button-mu,
+  .send-button-mu {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .cancel-button-mu {
+    background-color: #ddd;
+  }
+  
+  .send-button-mu {
+    background-color: gray;
+    color: #fff;
+  }
+  
