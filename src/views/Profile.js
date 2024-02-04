@@ -175,12 +175,12 @@ const Profile = () => {
                 {message}
             </div>
 
-            <button style={{ marginRight: '10px' }} onClick={() => navigate('/change-password')}>
+            <button className="send-button-mu" style={{ marginRight: '10px' }} onClick={() => navigate('/change-password')}>
                 Changer Mot de Passe
             </button>
 
-            {!isEditMode && <button onClick={handleEditClick}>Edit</button>}
-            {isEditMode && <button onClick={handleConfirmClick}>Confirm</button>}
+            {!isEditMode && <button className="send-button-mu" onClick={handleEditClick}>Edit</button>}
+            {isEditMode && <button className="send-button-mu" onClick={handleConfirmClick}>Confirm</button>}
         </div>
     );
 };

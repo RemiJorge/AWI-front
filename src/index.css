@@ -400,6 +400,7 @@ footer {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
   }
   
   .cancel-button-mu {
@@ -409,6 +410,14 @@ footer {
   .send-button-mu {
     background-color: gray;
     color: #fff;
+  }
+
+  .send-button-mu:hover {
+    background-color: darkgrey
+  }
+
+  .cancel-button-mu:hover {
+    background-color: lightgrey
   }
   
   .all-benev-button {
@@ -420,6 +429,10 @@ footer {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
+  }
+
+  .all-benev-button:hover {
+    background-color: darkgrey
   }
 
 
@@ -453,4 +466,8 @@ footer {
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin-bottom: 10px;
+}
+
+.rgpd-button:hover {
+  background-color: red
 }
