@@ -25,6 +25,7 @@ import ContactMesBenevoles from './views/ContactMesBenevoles';
 import ContactEveryone from './views/ContactEveryone';
 import RGPD from './views/RGPD';
 import Game from './views/Game';
+import GamesList from './views/GameList';
 
 const ROLES = {
   'User': 'User',
@@ -62,6 +63,7 @@ function App() {
               <Route path="contact/:username/:user_id" element={<Contact />} />
               <Route path="rgpd" element={<RGPD />} />
               <Route path="jeu/:jeu_id" element={<Game />} />
+              <Route path="jeu/liste" element={<GamesList />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Referent]} />}>
