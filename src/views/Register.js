@@ -175,6 +175,7 @@ const Register = () => {
                     <select
                         id="tshirtsize"
                         onChange={(e) => setTShirtSize(e.target.value)}
+                        className='select-element-mu'
                         value={tShirtSize}
                         required
                     >
@@ -187,10 +188,11 @@ const Register = () => {
                     </select>
                 </div>
 
-                <div className='form-group'>
+                <div className='form-group-checkbox'>
                     <input
                         type="checkbox"
                         id="vegan"
+                        className='checkbox-mu'
                         onChange={(e) => setVegan(e.target.checked)}
                         checked={vegan}
                     />
@@ -198,11 +200,12 @@ const Register = () => {
                 </div>
 
                 <div className='form-group'>
-                    <label htmlFor="accomodation">Hébergement</label>
+                    <label htmlFor="accomodation">Avez vous besoin d'un hébergement ?</label>
                     <select
                         id="accomodation"
                         onChange={(e) => setAccomodation(e.target.value)}
                         value={accomodation}
+                        className='select-element-mu'
                         required
                     >
                         <option value="oui">Oui</option>
@@ -232,7 +235,7 @@ const Register = () => {
                         <button type="submit">Inscription</button>
                     </>
                 }
-                <div className="persistCheck">
+                <div className="persistCheck form-group-checkbox ">
                     <input
                         type="checkbox"
                         id="persist"

@@ -108,7 +108,7 @@ const Login = () => {
                 </div>
                 <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                 <button>Sign In</button>
-                <div className="persistCheck">
+                <div className="persistCheck form-group-checkbox ">
                     <input
                         type="checkbox"
                         id="persist"

@@ -108,6 +108,7 @@ const JobPlanning = () => {
                     // select only attributes name, recu
                     response.data = response.data.map(item => {
                         return {
+                            id: item.jeu_id,
                             name: item.nom_du_jeu,
                             espace : getZoneGame(item),
                             recu: item.recu
@@ -634,7 +635,7 @@ const JobPlanning = () => {
                                                                             <div key={i} className="game-detail-row">
                                                                                 <div>{game.name}</div>
                                                                                 <div> jeu recu : {game.recu}</div>
-                                                                                <button onClick={() => navigate(``)}>Détail</button>
+                                                                                <button onClick={() => navigate(`/jeu/${game.id}`)}>Détail</button>
                                                                             </div>
                                                                         ))}
                                                                 </td>

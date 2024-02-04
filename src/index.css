@@ -74,6 +74,16 @@ footer {
     border-top: 2px solid #a3a3a3;
 }
 
+footer a {
+    text-decoration: none;
+    color: rgb(104, 104, 104);
+}
+
+footer a:hover {
+    text-decoration: underline;
+    color: #5c5c5c;
+}
+
 .content {
     flex: 1;
     display: flex;
@@ -173,15 +183,26 @@ footer {
     font-size: 1.1rem;
     padding : 0 15px 0 15px;
     font-weight: 600;
-    margin-top: 20px;
+    margin : 20px 10px;
     color: white;
     cursor: pointer;
 }
 
+
 .login-form button:hover {
-    background-color: #999999;
-    
-    border : 2px solid #dddddd;
+  background-color: #999999;
+  
+  border : 2px solid #dddddd;
+}
+
+.line a{
+    text-decoration: none;
+    color: #5c5c5c;
+}
+
+.line a:hover{
+    text-decoration: underline;
+    color: #5c5c5c;
 }
 
 .persistCheck{
@@ -196,6 +217,45 @@ footer {
     height: 15px;
 }
 
+.form-group-checkbox {
+    display: flex;
+    flex-direction: row;
+    margin : 10px 0;  
+}
+
+.accueil-button {
+    border-radius: 20px;
+    background-color: #b2b2b2;
+    border : 1px solid #a3a3a3;
+    font-size: 1.3rem;
+    padding : 10px 20px;
+    margin-top: 10px;
+    margin-left: 30px;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.accueil-button:hover {
+  color: #f6f6f6;
+  background-color: #b5b5b5;
+    border : 1px solid #5a5a5a;
+} 
+
+.accueil-frame-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.form-group-checkbox input{
+    height: 20px;
+    width: 20px;
+    margin : 0 10px;
+}
 
 .planning-day {
     display: flex;

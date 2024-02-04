@@ -39,10 +39,10 @@ const NabBar = () => {
         <>
             <nav>
                 <div className="nav-links">
-                    <Link to="/job-planning">Planning</Link>
                     {auth?.roles?.includes("Admin") && <Link to="/admin">Admin</Link>}
                     {auth?.accessToken &&
                         <>
+                            <Link to="/job-planning">Planning</Link>
                             <Link onClick={() => setNbNewMessages(0)} to="/messages">Messages {nbNewMessages > 0 && <span>({nbNewMessages})</span>}</Link>
                             <Link to="/profile">Profile</Link>
                             
