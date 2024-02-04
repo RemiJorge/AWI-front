@@ -25,6 +25,7 @@ const OtherUserProfile = () => {
     const handleContactClick = () => {
         // Handle contact logic
         console.log('Contacting user:', user_id);
+        navigate(`/contact/${userData.username}/${user_id}`);
     };
 
     if (error) {

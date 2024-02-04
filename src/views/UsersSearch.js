@@ -49,7 +49,7 @@ const UsersSearch = () => {
                             <button onClick={() => navigate(`/profile/${user.user_id}`)}>Profile</button>
                             {auth.user_id !== user.user_id &&
                                 <>
-                                    <button>Envoyer un message</button>
+                                    <button onClick={() => navigate(`/contact/${user.username}/${user.user_id}`)} >Envoyer un message</button>
                                     <button>Bannir</button>
                                 </>
                             }
