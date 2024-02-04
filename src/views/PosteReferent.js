@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
-
+import "../styles/poste-referent.css";
 
 const PosteReferent = () => {
     const axiosPrivate = useAxiosPrivate();
@@ -87,7 +87,7 @@ const PosteReferent = () => {
 
     const handleSearchUser = async () => {
         try {
-            const limit = 10;
+            const limit = 5;
             const response = await axiosPrivate.get(`/users/search/username?username=${searchUser}&page=${page}&limit=${limit}`);
             console.log(response.data);
             setPage(1);
@@ -108,7 +108,7 @@ const PosteReferent = () => {
 
     const moreUsers = async () => {
         try {
-            const limit = 10;
+            const limit = 5;
             const response = await axiosPrivate.get(`/users/search/username?username=${searchUser}&page=${page + 1}&limit=${limit}`);
             console.log(response.data);
             if (response.status === 200) {
@@ -128,18 +128,18 @@ const PosteReferent = () => {
     }
 
     return (
-        <div>
-            <button onClick={() => navigate(`/festival-info/${id}`)}>Retour</button>
+        <div className="poste-referent-page">
             <h1>Poste : {poste.poste}</h1>
             <div>Description : {poste.description_poste}</div>
             <div>Capacité : {poste.max_capacity}</div>
+            <button className="other-poste-button" onClick={() => navigate(`/festival-info/${id}`)}>Voir tous les postes</button>
             <h2>Referents</h2>
             {referent.length === 0 ? <div>Aucun referent pour ce poste</div>
-            : <div>
+            : <div className="current-referent-frame">
                 {referent.map((ref, index) => {
-                    return <div key={index}>
-                        <div>{ref.username}</div>
-                        <div>{ref.email}</div>
+                    return <div key={index} className="referent-info-frame">
+                        <div>Surnom : {ref.username}</div>
+                        <button onClick={() => navigate(`/profile/${ref.user_id}`)}>Voir le profil</button>
                         <button onClick={() => deleteReferent(ref.user_id)}>Retirer</button>
                     </div>
                 })}
@@ -149,7 +149,8 @@ const PosteReferent = () => {
             <input 
                 type="text"
                 placeholder="Nom d'utilisateur"
-                value={searchUser} 
+                value={searchUser}
+                className="search-input"
                 onChange={(e) => setSearchUser(e.target.value)} 
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
@@ -157,15 +158,15 @@ const PosteReferent = () => {
                     }
                 }}
                 />
-            <button onClick={handleSearchUser}>Rechercher</button>
+            <button className="search-button" onClick={handleSearchUser}>Rechercher</button>
             {users && 
                 <>
                     {users.length === 0 ? <div>Aucun utilisateur trouvé</div>
-                    :   <div>
+                    :   <div className="result-search-frame">
                             {users.map((user, index) => {
-                                return <div key={index}>
-                                    <div>{user.username}</div>
-                                    <div>{user.email}</div>
+                                return <div key={index} className="referent-info-frame">
+                                    <div>Surnom : {user.username}</div>
+                                    <button onClick={() => navigate(`/profile/${user.user_id}`)}>Voir le profil</button>
                                     {referent.find(ref => ref.user_id === user.user_id) ? 
                                         <button onClick={() => deleteReferent(user.user_id)}>Retirer</button>
                                         : 
@@ -178,7 +179,7 @@ const PosteReferent = () => {
                     }
                 </>
             }
-            {hasMore && <button onClick={moreUsers}>Plus</button>}
+            {hasMore && <button onClick={moreUsers} className="voir-plus-button">Plus</button>}
         </div>
     );
 };

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate} from 'react-router-dom';
+import "../styles/festival-info.css";
 
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
@@ -110,39 +111,46 @@ const FestivalInfo = () => {
 
             <h2>Postes</h2>
             {openCreatePoste ?
-                <div>
-                    <div>
+                <div className='form-create-poste'>
+                    <div className='form-input'>
                         <label htmlFor="posteName">Nom du poste</label>
                         <input type="text" value={posteName} onChange={(e) => setPosteName(e.target.value)} />
                     </div>
-                    <div>
+                    <div className='form-input'>
                         <label htmlFor="posteDescription">Description</label>
                         <input type="text" value={posteDescription} onChange={(e) => setPosteDescription(e.target.value)} />
                     </div>
-                    <div>
+                    <div className="form-input">
                         <label htmlFor="maxCapacity">Capacité</label>
-                        <input type="number" value={maxCapacity} onChange={(e) => setMaxCapacity(e.target.value)} />
+                        <input type="number" value={maxCapacity} onChange={(e) =>{
+                            let value = e.target.value;
+                            if (value < 0) { value = 0; }
+                            setMaxCapacity(value)}} />
                     </div>
-                    <button onClick={() => setOpenCreatePoste(false)}>Annuler</button>
-                    <button onClick={() => handleCreatePoste()}>Créer</button>
+                    <div className='create-button-frame'>
+                        <button  className='create-poste-button' onClick={() => setOpenCreatePoste(false)}>Annuler</button>
+                        <button className='validate-creation-button' onClick={() => handleCreatePoste()}>Créer</button>
+                    </div>
                 </div>
             :
-                <button onClick={() => setOpenCreatePoste(true)}>Créer un poste</button>
+                <button className='create-poste-button' onClick={() => setOpenCreatePoste(true)}>Créer un poste</button>
             }
-            <ul>
+            <ul className = "animation-list-container">
                 {postes.map((poste, index) => (
                     <li key={index}>
-                        {poste.poste}
-                        {poste.description_poste && <p>Description : {poste.description_poste}</p>}
-                        {poste.max_capacity && <p>Capacity : {poste.max_capacity}</p>}
-                        {poste.poste_id && <button onClick={() => navigate(`/festival-info/${id}/animation-referent/${poste.poste_id}`)}>Référents</button>}
-                        {poste.poste !== "Animation" && <button onClick={() => deletePoste(poste.poste)}>Supprimer</button>}
+                        <p>Nom: {poste.poste}</p>
+                        {poste.description_poste && <p>{poste.description_poste}</p>}
+                        {poste.max_capacity && <p>Capacité : {poste.max_capacity}</p>}
+                        <div className='poste-button-frame'>
+                            {poste.poste_id && <button onClick={() => navigate(`/festival-info/${id}/animation-referent/${poste.poste_id}`)}>Référents</button>}
+                            {poste.poste !== "Animation" && <button onClick={() => deletePoste(poste.poste)}>Supprimer</button>}
+                        </div>
                     </li>
                 ))} 
             </ul>
 
             {!festival.is_active &&
-                <button onClick={() => deleteFestival(festival.festival_id)}>Supprimer le festival</button>
+                <button className="delete-button" onClick={() => deleteFestival(festival.festival_id)}>Supprimer le festival</button>
             }
         </div>
     )

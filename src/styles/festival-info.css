@@ -1,0 +1,128 @@
+.animation-list-container {
+    display: flex;
+    flex-direction: row;
+    margin : 0 20px 0 20px;
+    max-width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    align-items: center ;
+    justify-content: center;
+}
+
+.animation-list-container li {
+    list-style-type: none;
+    padding: 10px;
+    text-align: left;
+    width: 30%;
+    height: 100%;
+    min-width: 300px;
+    margin : 10px;
+    background-color: #ededed;
+    border : 2px solid #a3a3a3;
+    border-radius: 15px;
+}
+
+.poste-button-frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.poste-button-frame button {
+    border-radius: 20px;
+    height: 35px;
+    background-color: #a3a3a3;
+    border : 2px solid #a3a3a3;
+    font-size: 1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.poste-button-frame button:hover {
+    background-color: #999999;
+    border : 2px solid #6f6f6f;
+}
+
+.delete-button{
+    border-radius: 20px;
+    height: 35px;
+    background-color: #8f3939;
+    border : 2px solid #8f3939;
+    font-size: 1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #d66565;
+    border : 2px solid #6f3939;
+}
+
+.form-input{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    max-width: 800px;
+}
+
+.form-create-poste {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin : auto
+}
+
+
+.create-poste-button {
+    border-radius: 20px;
+    height: 30px;
+    background-color: #ffffff;
+    border : 2px solid #dddddd;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.create-poste-button:hover {
+    background-color: #f3f3f3;
+    border : 2px solid #dddddd;
+}
+
+.create-button-frame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;    
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.validate-creation-button {
+    border-radius: 20px;
+    height: 30px;
+    background-color: #a3a3a3;
+    border : 2px solid #a3a3a3;
+    font-size: 1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    margin: 0 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.validate-creation-button:hover {
+    background-color: #999999;
+    border : 2px solid #6f6f6f;
+}   

@@ -459,12 +459,7 @@ const JobPlanning = () => {
             setShowAnimation(true)
             setAnimationDay(inscriptionDay);
             const animCreneaux = []
-            inscriptions.map(item => {
-                if (item.poste.includes("Animation")) {
-                    animCreneaux.push(item.creneau);
-                }
-            });
-            dataTransformed.find(item => item.day === inscriptionDay).my_inscriptions.map(item => {
+            inscriptionsDisplay.map(item => {
                 if (item.poste.includes("Animation")) {
                     animCreneaux.push(item.creneau);
                 }

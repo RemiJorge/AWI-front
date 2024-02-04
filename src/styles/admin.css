@@ -102,18 +102,18 @@
     cursor: pointer;
 }
 
-.desactiver-button:hover, .info-actif-button:hover, .festival-list-button-frame button {
+.desactiver-button:hover, .info-actif-button:hover, .festival-list-button-frame button:hover {
     background-color: #999999;
-    border : 2px solid #dddddd;
+    border : 2px solid #828282;
 }
 
 
 .upload-csv-frame {
-    margin-top: 30px;
+    margin-top: 30px;   
 }
 
 
-
+    
 .upload-file {
     display: flex;
     flex-direction: column;
@@ -172,15 +172,14 @@
 
 .create-festival-button{
     border-radius: 20px;
-    height: 40px;
-    background-color: #aaaaaa;
+    height: 30px;
+    background-color: #ffffff;
     border : 1px solid #a3a3a3;
     font-size: 1.1rem;
-    padding : 0 15px 0 15px;    
-    font-weight: 600;
-    margin: 10px 0;
-    color: white;
+    padding : 0 15px 0 15px;
+    color: rgb(0, 0, 0);
     cursor: pointer;
+    margin: 10px 0;
 }
 
 .form-create-festival {
@@ -227,19 +226,53 @@
 
 .search-users-button{
     border-radius: 20px;
-    height: 40px;
-    background-color: #aaaaaa;
+    background-color: #ffffff;
     border : 1px solid #a3a3a3;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    border-radius: 20px;
+    height: 40px;
     font-size: 1.1rem;
     padding : 0 15px 0 15px;    
     font-weight: 600;
     margin: auto;
     margin-top: 20px;
-    color: white;
-    cursor: pointer;
+}
+
+
+.search-users-button:hover, .create-festival-button:hover {
+    background-color: #ebebeb;
+    border : 1px solid #dddddd;
 }
 
 h1 {
     text-align: center; 
     margin-top: 10px;
+}
+
+.assign-frame {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.assign-frame button {
+    border-radius: 20px;
+    height: 40px;
+    background-color: #d49100;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.assign-frame button:hover {
+    background-color: rgb(225, 154, 0);
+    border : 2px solid #8e8e8e;
 }

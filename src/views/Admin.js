@@ -20,6 +20,7 @@ const Admin = () => {
     const [openCreateFestival, setOpenCreateFestival] = useState(false);
     const [festivalName, setFestivalName] = useState("");
     const [festivalDescription, setFestivalDescription] = useState("");
+    const [statusAssign, setStatusAssign] = useState("");
 
     const fetchFestivals = async () => {
         try {
@@ -109,6 +110,21 @@ const Admin = () => {
         }
     }
 
+    const handleAutoAssign = async () => {
+        try {
+            setStatusAssign("Calcul en cours...");
+            const response = await axiosPrivate.put('inscription/poste/auto-assign-flexibles')
+            console.log(response);
+            if (response.status === 200) {
+                setStatusAssign("Assignation terminée");
+            }
+        }
+        catch (err) {
+            console.log(err);
+            setStatusAssign("Assignation échouée");
+        }
+    }
+
     return (
         <div className="admin-content">
             <h1>Gestion Administrateur</h1>
@@ -142,6 +158,11 @@ const Admin = () => {
                                         <button onClick={handleFileUpload}>Upload</button>
                                     }
                                 </div>
+                            </div>
+                            <div className="assign-frame">
+                                <p>Assigner automatiquement les personnes flexibles</p>
+                                <button onClick={handleAutoAssign}>Auto-assigner</button>
+                                {statusAssign && <p>{statusAssign}</p>}
                             </div>
                         </>}
                     </div>
