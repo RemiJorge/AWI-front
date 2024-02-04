@@ -11,6 +11,7 @@ import PosteReferent from './views/PosteReferent';
 import FestivalInfo from './views/FestivalInfo';
 import UsersSearch from './views/UsersSearch';
 import ContactReferent from './views/ContactReferent';
+import Flexible from './views/Flexible';
 import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
@@ -70,6 +71,7 @@ function App() {
               <Route path="festival-info/:id" element={<FestivalInfo />}/>
               <Route path="festival-info/:id/animation-referent/:posteId" element={<PosteReferent />} />
               <Route path="users-search" element={<UsersSearch />} />
+              <Route path="flexible/:id" element={<Flexible />} />
               <Route path="contact/everyone" element={<ContactEveryone />} />
             </Route>
 

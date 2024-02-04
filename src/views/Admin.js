@@ -159,6 +159,7 @@ const Admin = () => {
                                     }
                                 </div>
                             </div>
+                            <button className="create-festival-button" onClick={() => navigate(`/flexible/${festivalActive.festival_id}`)}>Voir les flexibles</button>
                             <div className="assign-frame">
                                 <p>Assigner automatiquement les personnes flexibles</p>
                                 <button onClick={handleAutoAssign}>Auto-assigner</button>

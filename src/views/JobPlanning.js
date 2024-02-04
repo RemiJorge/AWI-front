@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 import useAxiosPrivate from "../hooks/useAxiosPrivate";
 
@@ -9,6 +10,7 @@ const JobPlanning = () => {
     const [isMounted, setIsMounted] = useState(true);
     const [isLoading, setIsLoading] = useState(true);
     const controller = new AbortController();
+    const { auth } = useAuth();
     const navigate = useNavigate();
 
     // raw data
