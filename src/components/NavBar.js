@@ -43,6 +43,7 @@ const NabBar = () => {
                     {auth?.accessToken &&
                         <>
                             <Link to="/job-planning">Planning</Link>
+                            <Link to="/jeu/liste">Jeux</Link>
                             <Link onClick={() => setNbNewMessages(0)} to="/messages">Messages {nbNewMessages > 0 && <span>({nbNewMessages})</span>}</Link>
                             <Link to="/profile">Profile</Link>
                             

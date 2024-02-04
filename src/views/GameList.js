@@ -17,6 +17,7 @@ const GamesList = () => {
                 }
                 else {
                     console.log(response.data[0].image_jeu);
+                    response.data.sort((a,b) => a.nom_du_jeu.localeCompare(b.nom_du_jeu, 'en', { numeric: true }))
                     setGames(response.data)
                 }
             } catch (error) {
