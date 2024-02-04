@@ -482,3 +482,56 @@ footer {
   transition: background-color 0.3s ease;
   margin-bottom: 10px;
 }
+
+.game-details-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.h2-game {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.img-game {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.p-game {
+  margin-bottom: 10px;
+}
+
+
+.a-game {
+  color: darkblue;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.a-game:hover {
+  text-decoration: underline;
+}
+
+.tags-container {
+  margin-top: 10px;
+}
+
+.tags-container span {
+  display: inline-block;
+  background-color: darkslategray;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+}
+
+.video-container {
+  margin-top: 10px;
+}
