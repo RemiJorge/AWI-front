@@ -245,62 +245,6 @@ footer {
     margin-bottom: 10px;
 }
 
-.upload-file {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 20px;
-    max-width: 800px;
-}
-
-.upload-file input {
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
-}
-
-.upload-file label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 20px;
-    height: 40px;
-    background-color: #aaaaaa;
-    border : 1px solid #a3a3a3;
-    font-size: 1.1rem;
-    padding : 0 15px 0 15px;
-    font-weight: 600;
-    margin-top: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.upload-file label:hover {
-    background-color: #999999;
-    border : 2px solid #dddddd;
-}
-
-.upload-file button{
-    border-radius: 20px;
-    height: 40px;
-    background-color: #aaaaaa;
-    border : 1px solid #a3a3a3;
-    font-size: 1.1rem;
-    padding : 0 15px 0 15px;
-    font-weight: 600;
-    margin-top: 20px;
-    color: white;
-    cursor: pointer;
-}
-
-.upload-file button:hover {
-    background-color: #999999;
-    border : 2px solid #dddddd;
-}
-
 /* ALEX OTHERSPROFILE CSS */
 
 .profile-container {

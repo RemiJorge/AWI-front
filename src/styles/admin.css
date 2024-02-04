@@ -1,0 +1,245 @@
+.admin-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+.festivals-frame {
+    display: flex;
+    flex-direction: row;
+    align-items: space-around;
+    justify-content: space-around;
+    padding: 20px;  
+    flex-wrap: wrap;
+    
+  }
+
+.festival-actif-frame {
+    display: flex;
+    flex-direction: column;
+    margin : 0 20px 0 20px;
+    flex-grow: 3;
+    min-width: 300px;
+    height: 100%;
+} 
+
+.festivals-list-frame {
+    margin : 0 20px 0 20px;
+    width: 300px;
+    flex-grow: 1;
+  }
+
+.festival-actif-content {
+    background-color: #ededed;
+    border : 2px solid #a3a3a3;
+    border-radius: 15px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+    align-self: center;
+    padding : 20px; 
+    margin-top: 30px;
+}
+
+
+
+.festivals-list-frame ul {
+    background-color: #ededed;
+    border : 2px solid #a3a3a3;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.festivals-list-frame ul li {
+    list-style-type: none;
+    padding: 10px;
+    text-align: left;
+}
+
+.festival-description-frame{
+    background-color: #abde81;
+    border : 2px solid #a3a3a3;
+    border-radius: 15px;
+    text-align: left;
+    padding: 10px 30px;
+}
+
+.festival-description-frame p {
+    max-width: 400px;
+}
+
+.festivals-list-description-frame {
+    background-color: #dddddd;
+    border : 2px solid #a3a3a3;
+    border-radius: 15px;
+    text-align: left;
+    padding: 10px 30px;
+}   
+
+.festivals-list-description-frame p {
+    max-width: 250px;
+}
+
+.description-actif-button{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.desactiver-button, .info-actif-button, .festival-list-button-frame button {
+    border-radius: 20px;
+    height: 40px;
+    background-color: #a3a3a3;
+    border : 2px solid #a3a3a3;
+    font-size: 1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-right: 10px;
+    color: white;
+    cursor: pointer;
+}
+
+.desactiver-button:hover, .info-actif-button:hover, .festival-list-button-frame button {
+    background-color: #999999;
+    border : 2px solid #dddddd;
+}
+
+
+.upload-csv-frame {
+    margin-top: 30px;
+}
+
+
+
+.upload-file {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+.upload-file input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.upload-file label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    height: 70px;
+    width: 200px;
+    margin-top: 10px;
+    background-color: #d5d5d5;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;
+    color: white;
+    cursor: pointer;
+}
+
+.upload-file label:hover {
+    border : 2px solid #c2c2c2;
+}   
+
+.upload-file button{
+    border-radius: 20px;
+    height: 40px;
+    background-color: #aaaaaa;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;    
+    font-weight: 600;
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.upload-file button:hover {
+    background-color: #999999;
+    border : 2px solid #dddddd;
+}
+
+
+.create-festival-button{
+    border-radius: 20px;
+    height: 40px;
+    background-color: #aaaaaa;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;    
+    font-weight: 600;
+    margin: 10px 0;
+    color: white;
+    cursor: pointer;
+}
+
+.form-create-festival {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 800px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    max-width: 800px;
+}
+
+.form-input label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    color: black;
+    text-align: left;
+}
+
+.form-input input {
+    border-radius: 10px;
+    height: 40px;
+    background-color: #ededed;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;
+    font-weight: 600;   
+    margin-top: 10px;
+    color: black;
+    max-width: 600px;
+    min-width: 300px;
+}
+
+.admin-content h2 {
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.search-users-button{
+    border-radius: 20px;
+    height: 40px;
+    background-color: #aaaaaa;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;    
+    font-weight: 600;
+    margin: auto;
+    margin-top: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+h1 {
+    text-align: center; 
+    margin-top: 10px;
+}

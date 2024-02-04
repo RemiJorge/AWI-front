@@ -18,7 +18,7 @@ const NabBar = () => {
     return (
         <>
             <nav>
-                <Link to="/">Accueil</Link>
+                <Link to="/job-planning">Planning</Link>
                 {auth?.roles?.includes("Admin") && <Link to="/admin">Admin</Link>}
                 {auth?.accessToken ? 
                     <>
