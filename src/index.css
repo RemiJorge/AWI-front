@@ -411,3 +411,36 @@ footer {
     color: #fff;
   }
   
+  .all-benev-button {
+    padding: 10px 15px;
+    background-color: gray;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+
+
+/* Style for the select container */
+.select-container-mu {
+  margin-bottom: 20px;
+}
+
+/* Style for the select element */
+.select-element-mu {
+  width: 100%;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease-in-out;
+}
+
+/* Style for the select options */
+.select-element-mu option {
+  font-size: 16px;
+}
+

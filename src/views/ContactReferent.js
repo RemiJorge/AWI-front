@@ -58,7 +58,9 @@ const ContactReferent = () => {
                     referent.map((ref, index) => {
                         return <div key={index}>
                             <div> Surnom : {ref.username} </div>
-                            <button>Envoyer un message</button>
+                            <button onClick={() => navigate(`/contact/${ref.username}/${ref.user_id}`)}>
+                                Envoyer un message
+                            </button>
                         </div>
                     })
                 }

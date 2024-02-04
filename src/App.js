@@ -19,10 +19,14 @@ import Profile from './views/Profile';
 import ChangePassword from './views/ChangePassword';
 import OtherUserProfile from './views/OtherUserProfile';
 import Messages from './views/Messages';
+import Contact from './views/Contact';
+import ContactMesBenevoles from './views/ContactMesBenevoles';
+import ContactEveryone from './views/ContactEveryone';
 
 const ROLES = {
   'User': 'User',
   'Admin': 'Admin',
+  'Referent': 'Referent',
   'Super': 'Super'
 }
 
@@ -52,9 +56,11 @@ function App() {
               {/*dynamic route for profile*/}
               <Route path="profile/:user_id" element={<OtherUserProfile />} />
               <Route path="contact-referent/:id/:posteName" element={<ContactReferent />} />
+              <Route path="contact/:username/:user_id" element={<Contact />} />
             </Route>
 
-            <Route element={<RequireAuth allowedRoles={[ROLES.Super]} />}>
+            <Route element={<RequireAuth allowedRoles={[ROLES.Referent]} />}>
+              <Route path="contact/mes-benevoles" element={<ContactMesBenevoles />} />
 
             </Route>
 
@@ -64,6 +70,7 @@ function App() {
               <Route path="festival-info/:id" element={<FestivalInfo />}/>
               <Route path="festival-info/:id/animation-referent/:posteId" element={<PosteReferent />} />
               <Route path="users-search" element={<UsersSearch />} />
+              <Route path="contact/everyone" element={<ContactEveryone />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Super, ROLES.Admin]} />}>
