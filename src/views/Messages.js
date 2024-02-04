@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
-import MessageUser from './MessageUser';
+import MessageUser from '../components/MessageUser';
 
 const Messages = () => {
     const axiosPrivate = useAxiosPrivate();
