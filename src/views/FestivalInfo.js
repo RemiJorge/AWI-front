@@ -135,6 +135,7 @@ const FestivalInfo = () => {
                         {poste.poste}
                         {poste.description_poste && <p>Description : {poste.description_poste}</p>}
                         {poste.max_capacity && <p>Capacity : {poste.max_capacity}</p>}
+                        {poste.poste_id && <button onClick={() => navigate(`/festival-info/${id}/animation-referent/${poste.poste_id}`)}>Référents</button>}
                         {poste.poste !== "Animation" && <button onClick={() => deletePoste(poste.poste)}>Supprimer</button>}
                     </li>
                 ))} 

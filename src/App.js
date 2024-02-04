@@ -7,8 +7,10 @@ import Register from './views/Register';
 import JobPlanning from './views/JobPlanning';
 import Login from './views/Login';
 import Admin from './views/Admin';
+import PosteReferent from './views/PosteReferent';
 import FestivalInfo from './views/FestivalInfo';
 import UsersSearch from './views/UsersSearch';
+import ContactReferent from './views/ContactReferent';
 import Home from './views/Home';
 import RequireAuth from './components/RequireAuth';
 import PersistLogin from './components/PersistLogin';
@@ -49,6 +51,7 @@ function App() {
               <Route path="messages" element={<Messages />} />
               {/*dynamic route for profile*/}
               <Route path="profile/:user_id" element={<OtherUserProfile />} />
+              <Route path="contact-referent/:id/:posteName" element={<ContactReferent />} />
             </Route>
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Super]} />}>
@@ -58,7 +61,8 @@ function App() {
 
             <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
               <Route path="admin" element={<Admin />} />
-              <Route path="festival-info/:id" element={<FestivalInfo />} />
+              <Route path="festival-info/:id" element={<FestivalInfo />}/>
+              <Route path="festival-info/:id/animation-referent/:posteId" element={<PosteReferent />} />
               <Route path="users-search" element={<UsersSearch />} />
             </Route>
 
