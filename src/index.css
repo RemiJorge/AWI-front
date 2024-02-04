@@ -22,7 +22,7 @@ body {
 
 nav {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     background-color: #dddddd;
     color: black;
@@ -30,6 +30,38 @@ nav {
     border-bottom: 2px solid #a3a3a3;
 }
 
+nav a {
+    text-decoration: none;
+    margin : 0 30px;
+    font-size: 1.4rem;
+    color : black;
+}
+
+nav .nav-links {
+    margin-left: 40px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+    color : #5c5c5c;
+}
+
+nav button {
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    background-color: #8d8d8d;
+    border : 2px solid #a3a3a3;
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+    margin-right: 40px ;
+}
+
+nav button:hover {
+    background-color: #a3a3a3;
+    border : 2px solid #a3a3a3;
+}
 
 footer {
     display:  flex;
@@ -94,7 +126,41 @@ footer {
     border : 1px solid #a3a3a3;
     border-radius: 10px;
     padding: 10px;
+
 }   
+
+.detail-poste button {
+    border-radius: 20px;
+    height: 30px;
+    background-color: #ffffff;
+    border : 1px solid #a3a3a3;
+    font-size: 1.1rem;
+    padding : 0 15px 0 15px;
+    margin-left: 30px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.game-detail-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    height: 30px;
+}
+
+.game-detail-row div {
+    margin-right: 20px;
+}
+
+.detail-poste button:hover {
+    background-color: #ebebeb;
+    border : 1px solid #dddddd;
+}
+
 .form-group input:focus {
     background-color: #ffffff;
 }
@@ -186,6 +252,7 @@ footer {
  width: 150px;
  height: 50px;
  border: 1px solid #ddd;
+ border-radius: 5px;
 }
 
 .row-number {
@@ -307,6 +374,11 @@ footer {
     align-items: space-around;
     flex-wrap: wrap;
     width: 100%;
+}
+
+.row-title:hover {
+    border : 1px solid #5c5c5c;
+    background-color: #f5f5f5;
 }
 
 /* ALEX OTHERSPROFILE CSS */

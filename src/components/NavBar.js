@@ -38,16 +38,20 @@ const NabBar = () => {
     return (
         <>
             <nav>
-                <Link to="/job-planning">Planning</Link>
-                {auth?.roles?.includes("Admin") && <Link to="/admin">Admin</Link>}
-                {auth?.accessToken ? 
-                    <>
-                        <div><Link onClick={() => setNbNewMessages(0)} to="/messages">Messages {nbNewMessages > 0 && <span>({nbNewMessages})</span>}</Link></div>
-                        <div><Link to="/profile">Profile</Link></div>
-                        <button onClick={signOut}>Se déconnecter</button>
-                    </>
-                    : <Link to="/login">Connectez-vous</Link>
-                }
+                <div className="nav-links">
+                    <Link to="/job-planning">Planning</Link>
+                    {auth?.roles?.includes("Admin") && <Link to="/admin">Admin</Link>}
+                    {auth?.accessToken &&
+                        <>
+                            <Link onClick={() => setNbNewMessages(0)} to="/messages">Messages {nbNewMessages > 0 && <span>({nbNewMessages})</span>}</Link>
+                            <Link to="/profile">Profile</Link>
+                            
+                        </>
+                        
+                    }
+                </div>
+                {auth?.accessToken ?  <button onClick={signOut}>Se déconnecter</button>
+                    : <Link to="/login">Connectez-vous</Link>}
             </nav>
             <Outlet />
         </>

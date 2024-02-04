@@ -579,6 +579,7 @@ const JobPlanning = () => {
                                                         {showDetails && poste === posteDetails && day.day === dayDetails ?
                                                             <td colSpan={day.creneaux.length} className="detail-poste">
                                                                 <button onClick={() => navigate(`/contact-referent/${festival.festival_id}/${poste}`)}>Contacter un Réferent</button>
+                                                                <button onClick={() => handleShowDetails(poste, day.day)}>Retour</button>
                                                                 </td>
                                                         : day.creneaux.map((creneau, i) => (
                                                                 <td key={i}
@@ -630,9 +631,10 @@ const JobPlanning = () => {
                                                                     {!gameDetails || Object.keys(gameDetails).length === 0 ? 
                                                                         <div>Pas de jeux pour cette espace</div>
                                                                     : gameDetails.map((game, i) => (
-                                                                            <div key={i}>
+                                                                            <div key={i} className="game-detail-row">
                                                                                 <div>{game.name}</div>
-                                                                                <div>{game.recu}</div>
+                                                                                <div> jeu recu : {game.recu}</div>
+                                                                                <button onClick={() => navigate(``)}>Détail</button>
                                                                             </div>
                                                                         ))}
                                                                 </td>
