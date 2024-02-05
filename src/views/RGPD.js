@@ -16,7 +16,7 @@ const DeleteAccount = () => {
             try {
                 // Send delete request
                 console.log('Sending delete request');
-                //await axiosPrivate.delete('/users/delete-data');
+                await axiosPrivate.delete('/users/delete-data');
             }
             catch (err) {
                 console.error(err);
