@@ -8,10 +8,10 @@ const Home = () => {
     return (
         <div className="content">
             <h1>Accueil</h1>
-            <p>Bienvenue sur le site de gestion des festivals</p>
+            <p>Bienvenue sur le site de gestion de festivals</p>
             {auth?.accessToken ? 
                 <div className="accueil-frame-info">
-                    <p>Pour vous inscrire sur des postes consulté le planning</p>
+                    <p>Pour vous inscrire sur des postes consultez le planning</p>
                     <Link to="/job-planning" className="accueil-button">Voir le planning</Link>
                 </div> : <div  className="accueil-frame-info">
                     <p>Connectez-vous pour accéder aux services</p> 
