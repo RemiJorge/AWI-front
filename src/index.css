@@ -230,7 +230,7 @@ footer a:hover {
     font-size: 1.3rem;
     padding : 10px 20px;
     margin-top: 10px;
-    margin-left: 30px;
+    /* margin-left: 30px; */
     color: rgb(255, 255, 255);
     cursor: pointer;
     font-weight: 600;
@@ -536,13 +536,19 @@ footer a:hover {
   }
 
   .reply-button {
+    font-weight: 600;
+    font-size: 0.7rem;
     padding: 3px 6px;
-    background-color: gray;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    border-radius: 20px;
+    border : 2px solid #a3a3a3;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: rgb(255, 255, 255);
+    background-color: #8d8d8d;
+    margin-bottom: 10px;
+  }
+
+  .reply-button:hover {
+    background-color: darkgrey
   }
   
 
@@ -592,19 +598,21 @@ footer a:hover {
   
   .cancel-button-mu,
   .send-button-mu {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border : 2px solid #a3a3a3;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: rgb(255, 255, 255);
   }
   
   .cancel-button-mu {
-    background-color: #ddd;
+    background-color: #8d8d8d;
   }
   
   .send-button-mu {
-    background-color: gray;
+    background-color: #8d8d8d;
     color: #fff;
   }
 
@@ -613,17 +621,18 @@ footer a:hover {
   }
 
   .cancel-button-mu:hover {
-    background-color: lightgrey
+    background-color: darkgray
   }
   
   .all-benev-button {
-    padding: 10px 15px;
-    background-color: gray;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 15px;
+    border-radius: 20px;
+    border : 2px solid #a3a3a3;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    color: rgb(255, 255, 255);
+    background-color: #8d8d8d;
     margin-bottom: 10px;
   }
 
@@ -654,13 +663,14 @@ footer a:hover {
 }
 
 .rgpd-button {
-  padding: 10px 15px;
-  background-color: darkred;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border : 2px solid lightcoral;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: rgb(255, 255, 255);
+  background-color: rgb(255, 51, 51);
   margin-bottom: 10px;
 }
 
@@ -669,14 +679,19 @@ footer a:hover {
 }
 
 .delete-msg-button {
+  font-weight: 600;
+  font-size: 0.7rem;
   padding: 3px 6px;
-  background-color: darkred;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
+  border-radius: 20px;
+  border : 2px solid #7B433D;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  color: rgb(255, 255, 255);
+  background-color: #94544D;
   margin-bottom: 10px;
+}
+
+.delete-msg-button:hover {
+  background-color: darkred
 }
 
 .game-details-container {

@@ -73,7 +73,7 @@ const OtherUserProfile = () => {
                 </div>
             </div>
 
-            <button className="contact-button" onClick={handleContactClick}>Contact</button>
+            <button className="send-button-mu" onClick={handleContactClick}>Contact</button>
         </div>
 
     );

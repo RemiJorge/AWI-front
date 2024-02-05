@@ -46,7 +46,7 @@ const GameDetails = () => {
             {message ? <p style={{marginTop: '20px'}}>{message}</p> : 
             <div className="game-details-container">
                 <h2 className='h2-game'>{gameDetails.nom_du_jeu}</h2>
-                <img className='img-game' src={gameDetails.image_jeu} alt="Game Cover" />
+                <img className='img-game' src={gameDetails.image_jeu} alt="" />
                 <div style={{ textAlign: 'left' }}>
                 <p className='p-game'><strong>Auteur:</strong> {gameDetails.auteur}</p>
                 <p className='p-game'><strong>Éditeur:</strong> {gameDetails.editeur}</p>

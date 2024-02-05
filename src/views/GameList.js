@@ -37,7 +37,7 @@ const GamesList = () => {
                     <li key={game.jeu_id} className="game-item-list">
                         <div>
                             <h3>{game.nom_du_jeu}</h3>
-                            <img src={game.image_jeu ? game.image_jeu : "https://www.festivaldujeu-montpellier.org/wp-content/uploads/2019/11/cropped-logo_FJM_FINAL_160.png"} alt="Game Cover" />
+                            <img src={game.image_jeu ? game.image_jeu : "https://www.festivaldujeu-montpellier.org/wp-content/uploads/2019/11/cropped-logo_FJM_FINAL_160.png"} alt="" />
                             {/* <p>{game.description}</p> */}
                             <Link to={`/jeu/${game.jeu_id}`}>
                                 <button className='send-button-mu'>Details</button>
